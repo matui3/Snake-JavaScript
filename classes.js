@@ -13,11 +13,8 @@ class Snake {
     // initialize body
     draw() {
         ctx.fillStyle = 'green'
-        this.snakeBody[0] = { x: this.position.x, y: this.position.y }
-        if (this.snakeBody.length === 0) {
-            ctx.fillRect(this.snakebody[0].x, this.snakebody[0].y, 20, 20)
-        }
-
+        this.snakeBody[0] = { x: this.position.x, y: this.position.y}
+        
     }
 
     update() {
@@ -34,15 +31,15 @@ class Snake {
         } else if (this.position.y > canvas.height - 20) {
             this.velocity.y = 0;
             this.position.y = canvas.height - 20;
-        } else {
-            this.position.x += this.velocity.x * 20;
-            this.position.y += this.velocity.y * 20;
         }
         for (let i = this.snakeBody.length - 1; i > 0; i--) {
             this.snakeBody[i] = this.snakeBody[i - 1];
         }
         this.draw()
-
+        this.position.x += this.velocity.x * 20;
+        this.position.y += this.velocity.y * 20;
+        this.snakeBody[0] = { x: this.position.x, y: this.position.y }
+        
         for (let i = 0; i < this.snakeBody.length; i++) {
             ctx.fillRect(this.snakeBody[i].x, this.snakeBody[i].y, 20, 20)
         }
@@ -107,21 +104,18 @@ class Game {
             this.gameOver = true;
             return true;
         }
-
-        // check if snake eats itself
+        // console.log("Head: ", snake.snakeBody[0].x)
         for (let i = 1; i < snake.snakeBody.length; i++) {
-            console.log(snake.snakeBody)
-            if (snake.snakeBody[0].x == snake.snakeBody[i].x) {
+            // console.log("Body: ", snake.snakeBody[i].x)
+            
+            if (snake.snakeBody[0].x == snake.snakeBody[i].x && snake.snakeBody[0].y == snake.snakeBody[i].y) {
                 clearTimeout(this.timerId)
                 this.gameOver = true;
-                return true;
-            }
-            if (snake.snakeBody[0].y == snake.snakeBody[i].y) {
-                this.gameOver = true;
-                clearTimeout(this.timerId)
                 return true;
             }
         }
+        // check if snake eats itself
+
 
     }
 }

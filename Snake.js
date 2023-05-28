@@ -32,34 +32,28 @@ const apple = new Apple({
 function animate() {
     ctx.fillStyle = 'black'
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    apple.draw()
+    apple.draw();
     snake.update();
-    game.clock()
+    game.clock();
 
     if (rectangularCollisions({
         rectangle1: snake,
-        rectangle2: apple})) {
-            let body = snake.snakeBody
-            apple.clearApple();
-            snake.snakeBody.push({x: body[body.length-1].x, y: body[body.length-1].y})
-            console.log("Apple added: ", body[body.length-1].x)
-            apple.update();
-        }
+        rectangle2: apple
+    })) {
+        apple.clearApple();
+        snake.snakeBody.push(apple.position)     
+        apple.update();
+        snake.update();
+    }
     
     if (game.gameEnds()) {
-        clearTimeout(animate)
+        clearInterval(timer)
     }
-
 }
 
-setInterval(animate, 100)
-
-
-animate()
-
+var timer = setInterval(animate, 100)
 
 window.addEventListener('keydown', (event) => {
-
     switch (event.key) {
         case 'ArrowUp':
             if (snake.velocity.y != 1 && !game.gameOver) {
