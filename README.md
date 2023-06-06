@@ -1,1 +1,2 @@
 # Snake-JavaScript
+# Snake-Game

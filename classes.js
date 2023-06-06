@@ -79,28 +79,22 @@ class Apple {
 
 class Game {
     constructor() {
-        this.timer = 0;
-        this.timerId;
         this.gameOver = false;
     }
 
-    clock() {
-        if (this.timer = 0) {
-            this.timer++;
-            this.timerId = setTimeout(timer, 1000)
-        }
+    tracker() {
+        const score = document.querySelector('.score');
+        score.innerHTML = this.score;
     }
 
     gameEnds() {
 
         if (snake.position.x < 0 || snake.position.x >= canvas.width) {
-            clearTimeout(this.timerId)
             this.gameOver = true;
             return true
         }
 
         if (snake.position.y < 0 || snake.position.y >= canvas.height) {
-            clearTimeout(this.timerId)
             this.gameOver = true;
             return true;
         }
@@ -109,7 +103,6 @@ class Game {
             // console.log("Body: ", snake.snakeBody[i].x)
             
             if (snake.snakeBody[0].x == snake.snakeBody[i].x && snake.snakeBody[0].y == snake.snakeBody[i].y) {
-                clearTimeout(this.timerId)
                 this.gameOver = true;
                 return true;
             }

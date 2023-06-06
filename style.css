@@ -1,0 +1,22 @@
+canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    position: relative;
+    top: 4em;
+}
+
+h2 {
+    left: 40vw;
+    top: 5em;
+    position: relative;
+    width: 200px;
+    margin: 0px;
+}

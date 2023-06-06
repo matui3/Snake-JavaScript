@@ -18,6 +18,9 @@ const snake = new Snake({
     }
 })
 
+const tracker = document.querySelector('.score')
+let score = 0
+
 snake.draw()
 
 const game = new Game();
@@ -34,16 +37,18 @@ function animate() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     apple.draw();
     snake.update();
-    game.clock();
+    
 
     if (rectangularCollisions({
         rectangle1: snake,
         rectangle2: apple
     })) {
+        score++;
         apple.clearApple();
         snake.snakeBody.push(apple.position)     
         apple.update();
         snake.update();
+        tracker.innerHTML = score 
     }
     
     if (game.gameEnds()) {
